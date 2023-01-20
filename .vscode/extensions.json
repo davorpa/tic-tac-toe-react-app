@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "capaj.vscode-standardjs-snippets",
+    "timonvs.reactsnippetsstandard"
+  ]
+}
