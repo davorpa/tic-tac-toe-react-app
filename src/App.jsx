@@ -1,4 +1,19 @@
+import { useState } from 'react'
+import { BoardTile } from './components/BoardTile'
+
 function App() {
+  const [board, setBoard] = useState(() => Array(9).fill(null))
+
+  const updateBoardTile = (index, value) => {
+    const newBoard = [...board]
+    newBoard[index] = value
+    setBoard(newBoard)
+  }
+
+  const onBoardTileAction = (index) => {
+    updateBoardTile(index, 'X')
+  }
+
   return (
     <main className="App">
       <header>
@@ -9,6 +24,16 @@ function App() {
           </h1>
         </a>
       </header>
+      <section className="board">
+        {board.map((value, index) => (
+          <BoardTile
+            key={index}
+            value={value}
+            action={onBoardTileAction}
+            index={index}
+          />
+        ))}
+      </section>
     </main>
   )
 }
