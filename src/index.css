@@ -1,5 +1,5 @@
 :root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Merienda One', cursive;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
@@ -13,6 +13,12 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 a {
@@ -39,12 +45,6 @@ body {
   text-align: center;
 }
 
-h1 {
-  font-size: 2em;
-  line-height: 1.1;
-  font-family: 'Merienda One', cursive;
-}
-
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -64,6 +64,50 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+
+.branding {
+  display: flex;
+  gap: 1.5rem;
+  place-items: center;
+}
+
+.branding .logo {
+  height: 96px;
+  aspect-ratio: 1/1;
+  transform: rotate(-45deg);
+  border-radius: 40%;
+  border: 2px solid #999999;
+  box-shadow: 0 0 0.8rem .4rem aquamarine;
+  background: rgba(255, 255, 255, 0.87);
+}
+
+.branding .title {
+  font-size: 2rem;
+  line-height: 1.1;
+  white-space:nowrap;
+  color: #242424;
+  transform: rotate(-15deg);
+}
+
+.branding .title span {
+  color: rgba(255, 255, 255, 0.87);
+  display: inline-block;
+  transform: rotate(-15deg);
+  text-shadow: 0 0 1rem aquamarine;
+}
+.branding .title span:nth-child(2) {
+  writing-mode: tb;
+}
+.branding .title span::first-letter {
+  text-transform: uppercase;
+  font-weight: 800;
+  color: aquamarine;
+}
+
+
+
+
+/*
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -76,3 +120,4 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+*/
