@@ -4,14 +4,19 @@ import { BoardTile } from './components/BoardTile'
 function App() {
   const [board, setBoard] = useState(() => Array(9).fill(null))
 
+  const [turn, setTurn] = useState(() => 'X')
+
   const updateBoardTile = (index, value) => {
     const newBoard = [...board]
     newBoard[index] = value
     setBoard(newBoard)
   }
 
+  const swapTurn = () => setTurn((turn) => (turn === 'X' ? 'O' : 'X'))
+
   const onBoardTileAction = (index) => {
-    updateBoardTile(index, 'X')
+    updateBoardTile(index, turn)
+    swapTurn()
   }
 
   return (
