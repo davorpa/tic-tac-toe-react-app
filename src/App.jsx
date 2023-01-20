@@ -6,6 +6,8 @@ function App() {
 
   const [turn, setTurn] = useState(() => 'X')
 
+  const canBoardBeUpdated = (index) => board[index] === null
+
   const updateBoardTile = (index, value) => {
     const newBoard = [...board]
     newBoard[index] = value
@@ -15,6 +17,7 @@ function App() {
   const swapTurn = () => setTurn((turn) => (turn === 'X' ? 'O' : 'X'))
 
   const onBoardTileAction = (index) => {
+    if (!canBoardBeUpdated(index)) return
     updateBoardTile(index, turn)
     swapTurn()
   }
