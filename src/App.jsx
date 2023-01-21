@@ -17,6 +17,13 @@ function App() {
   const [winner, setWinner] = useState(null)
   const [winnerCombo, setWinnerCombo] = useState(null)
 
+  const handleReset = () => {
+    setBoard(provideInitialArray)
+    setTurn(provideDefaultTurn)
+    setWinner(null)
+    setWinnerCombo(null)
+  }
+
   const canBoardBeUpdated = (index) => board[index] === null && winner === null
 
   const updateBoardTile = (index, value) => {
@@ -62,6 +69,9 @@ function App() {
           />
         ))}
       </section>
+      <footer>
+        <button onClick={handleReset}>Reset</button>
+      </footer>
     </main>
   )
 }
