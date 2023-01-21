@@ -157,7 +157,7 @@ body {
 
 .App footer button {
   padding: 8px 12px;
-  background: transparent;
+  background: #1a1a1a;
   border: 2px solid rgba(255, 255, 255, 0.87);
   color: rgba(255, 255, 255, 0.87);
   width: 128px;
@@ -168,7 +168,22 @@ body {
 
 .App footer button:hover {
   background: rgba(255, 255, 255, 0.87);
-  color: #222;
+  color: #1a1a1a;
+;
+}
+
+.App footer p {
+  margin: 0 auto;
+  font-size: 1.5rem;
+}
+
+.App footer p span {
+  display: inline-block;
+  color: #1a1a1a;
+  border: 2px solid #1a1a1a;
+  border-radius: 50%;
+  background-color: aquamarine;
+  padding: 8px 12px;
 }
 
 /*

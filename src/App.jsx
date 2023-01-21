@@ -71,6 +71,17 @@ function App() {
       </section>
       <footer>
         <button onClick={handleReset}>Reset</button>
+        {winner === null && (
+          <p>
+            <span>{turn}</span>'s turn
+          </p>
+        )}
+        {winner === false && <p>TIE!</p>}
+        {winner && (
+          <p>
+            <span>{winner}</span> won!
+          </p>
+        )}
       </footer>
     </main>
   )
