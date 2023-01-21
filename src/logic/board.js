@@ -1,4 +1,12 @@
 /*
+Turn / player's tile identifiers enum
+*/
+const TURNS = Object.freeze({
+  X: 'X',
+  O: 'O'
+})
+
+/*
 Indexes within the board
 [0] [1] [2]
 [3] [4] [5]
@@ -17,9 +25,31 @@ const winningConditions = [
 
 export const provideInitialArray = () => Array(9).fill(null)
 
-export const provideDefaultTurn = () => 'X'
+export const validateBoard = (value) => {
+  if (!Array.isArray(value) || value.length !== 9) {
+    throw new Error('value must be an Array(9)')
+  }
+  if (value.some((turn) => ![null, ...Object.values(TURNS)].includes(turn))) {
+    throw new Error(
+      'value items must be in [null,' + Object.values(TURNS) + ']'
+    )
+  }
+  return value
+}
 
-export const nextTurn = (turn) => (turn === 'X' ? 'O' : 'X')
+export const provideDefaultTurn = () => TURNS.X
+
+export const nextTurn = (turn) => (turn === TURNS.X ? TURNS.O : TURNS.X)
+
+export const validateTurn = (value) => {
+  if (typeof value !== 'string') {
+    throw new Error('value must be a String')
+  }
+  if (!Object.values(TURNS).includes(value)) {
+    throw new Error('value must be in [' + Object.values(TURNS) + ']')
+  }
+  return value
+}
 
 export const checkWinnerFrom = (board) => {
   // review game conditions some winning combination

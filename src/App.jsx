@@ -1,18 +1,30 @@
 import { useState } from 'react'
 import {
+  checkEndGame,
+  checkWinnerFrom,
+  nextTurn,
   provideInitialArray,
   provideDefaultTurn,
-  nextTurn,
-  checkWinnerFrom,
-  checkEndGame
+  validateBoard,
+  validateTurn
 } from './logic/board'
 import { createConfetti, resetConfetti } from './logic/confetti'
+import {
+  loadBoardFromStorage,
+  loadTurnFromStorage,
+  resetGameStorage,
+  saveGameToStorage
+} from './logic/storage'
 import { BoardTile } from './components/BoardTile'
 
 function App() {
-  const [board, setBoard] = useState(provideInitialArray)
+  const [board, setBoard] = useState(
+    loadBoardFromStorage(validateBoard, provideInitialArray)
+  )
 
-  const [turn, setTurn] = useState(provideDefaultTurn)
+  const [turn, setTurn] = useState(
+    loadTurnFromStorage(validateTurn, provideDefaultTurn)
+  )
 
   // null => no winner yet, false => tie, or X-O if some turn won
   const [winner, setWinner] = useState(null)
@@ -24,6 +36,7 @@ function App() {
     setWinner(null)
     setWinnerCombo(null)
     resetConfetti()
+    resetGameStorage()
   }
 
   const canBoardBeUpdated = (index) => board[index] === null && winner === null
@@ -39,6 +52,11 @@ function App() {
     if (!canBoardBeUpdated(index)) return
     const newBoard = updateBoardTile(index, turn)
     const newTurn = nextTurn(turn)
+    setTurn(newTurn)
+    saveGameToStorage({
+      board: newBoard,
+      turn: newTurn
+    })
     const [newWinner, newWinnerCombo] = checkWinnerFrom(newBoard)
     if (newWinner !== null) {
       createConfetti()
@@ -46,8 +64,6 @@ function App() {
       setWinnerCombo(newWinnerCombo)
     } else if (checkEndGame(newBoard)) {
       setWinner(false) // tie
-    } else {
-      setTurn(newTurn)
     }
   }
 
