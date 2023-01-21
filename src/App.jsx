@@ -6,6 +6,7 @@ import {
   checkWinnerFrom,
   checkEndGame
 } from './logic/board'
+import { createConfetti, resetConfetti } from './logic/confetti'
 import { BoardTile } from './components/BoardTile'
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
     setTurn(provideDefaultTurn)
     setWinner(null)
     setWinnerCombo(null)
+    resetConfetti()
   }
 
   const canBoardBeUpdated = (index) => board[index] === null && winner === null
@@ -39,6 +41,7 @@ function App() {
     const newTurn = nextTurn(turn)
     const [newWinner, newWinnerCombo] = checkWinnerFrom(newBoard)
     if (newWinner !== null) {
+      createConfetti()
       setWinner(newWinner)
       setWinnerCombo(newWinnerCombo)
     } else if (checkEndGame(newBoard)) {
