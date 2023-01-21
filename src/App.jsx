@@ -1,25 +1,44 @@
 import { useState } from 'react'
+import {
+  provideInitialArray,
+  provideDefaultTurn,
+  nextTurn,
+  checkWinnerFrom,
+  checkEndGame
+} from './logic/board'
 import { BoardTile } from './components/BoardTile'
 
 function App() {
-  const [board, setBoard] = useState(() => Array(9).fill(null))
+  const [board, setBoard] = useState(provideInitialArray)
 
-  const [turn, setTurn] = useState(() => 'X')
+  const [turn, setTurn] = useState(provideDefaultTurn)
 
-  const canBoardBeUpdated = (index) => board[index] === null
+  // null => no winner yet, false => tie, or X-O if some turn won
+  const [winner, setWinner] = useState(null)
+  const [winnerCombo, setWinnerCombo] = useState(null)
+
+  const canBoardBeUpdated = (index) => board[index] === null && winner === null
 
   const updateBoardTile = (index, value) => {
     const newBoard = [...board]
     newBoard[index] = value
     setBoard(newBoard)
+    return newBoard
   }
-
-  const swapTurn = () => setTurn((turn) => (turn === 'X' ? 'O' : 'X'))
 
   const onBoardTileAction = (index) => {
     if (!canBoardBeUpdated(index)) return
-    updateBoardTile(index, turn)
-    swapTurn()
+    const newBoard = updateBoardTile(index, turn)
+    const newTurn = nextTurn(turn)
+    const [newWinner, newWinnerCombo] = checkWinnerFrom(newBoard)
+    if (newWinner !== null) {
+      setWinner(newWinner)
+      setWinnerCombo(newWinnerCombo)
+    } else if (checkEndGame(newBoard)) {
+      setWinner(false) // tie
+    } else {
+      setTurn(newTurn)
+    }
   }
 
   return (
@@ -39,6 +58,7 @@ function App() {
             value={value}
             action={onBoardTileAction}
             index={index}
+            highlight={winnerCombo?.includes(index)}
           />
         ))}
       </section>
