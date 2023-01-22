@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   checkEndGame,
   checkWinnerFrom,
@@ -57,15 +57,19 @@ function App() {
       board: newBoard,
       turn: newTurn
     })
-    const [newWinner, newWinnerCombo] = checkWinnerFrom(newBoard)
+  }
+
+  // sync computed values when board state changes
+  useEffect(() => {
+    const [newWinner, newWinnerCombo] = checkWinnerFrom(board)
     if (newWinner !== null) {
       createConfetti()
       setWinner(newWinner)
       setWinnerCombo(newWinnerCombo)
-    } else if (checkEndGame(newBoard)) {
+    } else if (checkEndGame(board)) {
       setWinner(false) // tie
     }
-  }
+  }, [board])
 
   return (
     <main className="App">
