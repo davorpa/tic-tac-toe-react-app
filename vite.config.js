@@ -24,6 +24,10 @@ export default ({ command, mode }) => {
     root,
     base,
     mode,
-    plugins: [react()]
+    plugins: [react()],
+    build: {
+      outDir: 'dist',
+      emptyOutDir: true
+    }
   })
 }

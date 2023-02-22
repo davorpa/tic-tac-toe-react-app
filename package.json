@@ -1,7 +1,7 @@
 {
   "name": "tic-tac-toe-react-app",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "lint": "eslint . --ext .js,.jsx",
     "lint:fix": "eslint . --fix --ext .js,.jsx",
-    "predeploy": "rm -rf dist && npm run build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
