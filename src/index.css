@@ -50,7 +50,7 @@ body {
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1.2rem;
   text-align: center;
 }
 
@@ -59,7 +59,7 @@ body {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
+  gap: 2rem;
 }
 
 .App header {
@@ -75,7 +75,7 @@ body {
 }
 
 .App .branding .logo {
-  height: 96px;
+  height: 64px;
   aspect-ratio: 1/1;
   transform: rotate(-45deg);
   border-radius: 40%;
@@ -126,12 +126,11 @@ body {
   color: rgba(255, 255, 255, 0.87);
   background-color: #1a1a1a;
   box-shadow: 0 0 0.4rem .2rem aquamarine;
-  width: 128px;
-  height: 128px;
+  aspect-ratio: 1/1;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 5rem;
+  font-size: 3.5rem;
   line-height: 1;
   text-transform: uppercase;
   cursor: pointer;
@@ -174,7 +173,7 @@ body {
 
 .App footer p {
   margin: 0 auto;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 .App footer p span {
@@ -184,6 +183,40 @@ body {
   border-radius: 50%;
   background-color: aquamarine;
   padding: 8px 12px;
+}
+
+@media (min-width: 470px) {
+  #root {
+    padding: 2rem;
+  }
+
+  .App {
+    gap: 2.5rem;
+  }
+
+  .App .branding .logo {
+    height: 96px;
+  }
+
+  .App .branding .title {
+    font-size: 2rem;
+  }
+
+  .App .board .tile {
+    min-width: 128px;
+    font-size: 5rem;
+  }
+
+  .App footer p {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .App .board .tile {
+    min-width: 152px;
+    font-size: 5.5rem;
+  }
 }
 
 /*
